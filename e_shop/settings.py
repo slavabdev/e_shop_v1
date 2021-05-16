@@ -83,6 +83,8 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
+
+# authentification citeria
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTIFICATION_METHOD = 'username_email'
