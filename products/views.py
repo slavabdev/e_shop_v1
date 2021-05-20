@@ -7,10 +7,9 @@ def all_products(request):
     '''A view to return tall products, including dorting and search queries''' 
 
     products = Product.objects.all()
-    
+      
     context = {
         'products': products,
     }
-
-
+    
     return render(request, 'products/products.html', context)
