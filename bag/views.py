@@ -12,7 +12,7 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     '''Add a quantity to the specified product to the shopping bag'''
 
-    product = Product.objects.get(pk=item_id)
+    product = get_object_or_404(Product, pk=item_id)
 
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
@@ -81,9 +81,8 @@ def adjust_bag(request, item_id):
 def remove_from_bag(request, item_id):
     '''Remove the specified product to the shopping bag'''
 
-    product = get_object_or_404(Product, pk=item_id)
-
     try:
+        product = get_object_or_404(Product, pk=item_id)
         size = None
         if 'product_size' in request.POST:
             size = request.POST['product_size']
@@ -102,5 +101,5 @@ def remove_from_bag(request, item_id):
         return HttpResponse(status=200)
 
     except Exception as e:
-        messages.error(request, f'Erro removing item {e}')
+        messages.error(request, f'Error removing item {e}')
         return HttpResponse(status=500)
